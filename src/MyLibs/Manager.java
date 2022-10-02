@@ -6,6 +6,12 @@ public class Manager {
     private LoginDetails login;
     private Date dob;
     
+    /**
+     * @param name manager's name
+     * @param empNo manager's employee number
+     * @param logDet manager's username and password
+     * @param dob manager's date of birth
+     */
     public Manager(String name, int empNo, LoginDetails logDet, Date dob) {
         this.name = name;
         this.empNo = empNo;
@@ -14,10 +20,6 @@ public class Manager {
     }
     
     public boolean loginAttempt(String user, String pass) {
-        // FIXME: temporary, need to change the two below to use jField thingies
-       user = this.login.getUsername();
-       pass = this.login.getPassword();
-        
        return (login.getUsername().equals(user) && login.getPassword().equals(pass));
     }
     
@@ -30,4 +32,16 @@ public class Manager {
     public void processRental(Date d, CarRecords cars, CustRecords custs) { throw new UnsupportedOperationException("Work in progress."); }
     public void showStatusRep(CarRecords cars) { throw new UnsupportedOperationException("Work in progress."); }
     public void showListRep(CarRecords cars) { throw new UnsupportedOperationException("Work in progress."); }
+
+    public String getName() {
+        return name;
+    }
+
+    public Date getDateOfBirth() {
+        return dob;
+    }
+
+    public LoginDetails getLogin() {
+        return login;
+    }
 }

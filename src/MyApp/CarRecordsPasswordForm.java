@@ -56,6 +56,10 @@ public class CarRecordsPasswordForm extends javax.swing.JFrame {
         loginHeader.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         loginHeader.setText("Login to Car Rentals Management System");
 
+        managerUsername.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+
+        managerPassword.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+
         managerUsernameLabel.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         managerUsernameLabel.setText("Username");
 

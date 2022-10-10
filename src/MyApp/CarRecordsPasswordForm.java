@@ -3,6 +3,7 @@ package MyApp;
 import MyLibs.Date;
 import MyLibs.LoginDetails;
 import MyLibs.Manager;
+import com.sun.glass.events.KeyEvent;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -15,7 +16,6 @@ public class CarRecordsPasswordForm extends javax.swing.JFrame {
 
     /**
      * define all hard coded managers here
-     * (these values are temporary, help in finalizing)
      */
     Manager test = new Manager("asdf",
             1,
@@ -59,6 +59,11 @@ public class CarRecordsPasswordForm extends javax.swing.JFrame {
         managerUsername.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
 
         managerPassword.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        managerPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                managerPasswordKeyPressed(evt);
+            }
+        });
 
         managerUsernameLabel.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         managerUsernameLabel.setText("Username");
@@ -130,6 +135,40 @@ public class CarRecordsPasswordForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void managerLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managerLoginButtonActionPerformed
+        loginLogic();
+    }//GEN-LAST:event_managerLoginButtonActionPerformed
+
+    private void programQuitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programQuitButtonActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_programQuitButtonActionPerformed
+
+    private void managerPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_managerPasswordKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            try {
+                loginLogic();
+            }
+            catch (Exception e) {
+                displayLoginError();
+            }
+        }
+    }//GEN-LAST:event_managerPasswordKeyPressed
+
+    private void managerLogin(Manager m, String u, String p) {
+        if (m.loginAttempt(u, p)) {
+            JOptionPane.showMessageDialog(this, "Hello Manager " + m.getName(), "Message Box", JOptionPane.INFORMATION_MESSAGE, info_icon);
+            this.setVisible(false);
+            main_form.setVisible(true);
+        } // Login passed
+        else {
+            displayLoginError();
+        } // Login failed
+    }
+    
+    private void displayLoginError() {
+        JOptionPane.showMessageDialog(this, "Login failed", "Message Box", JOptionPane.ERROR_MESSAGE, error_icon);
+    }
+
+    private void loginLogic() {
         String enteredUser = managerUsername.getText();
         char[] enteredPass = managerPassword.getPassword();
         String passAsString = new String(enteredPass);
@@ -142,25 +181,9 @@ public class CarRecordsPasswordForm extends javax.swing.JFrame {
                 managerLogin(test2, enteredUser, passAsString);
                 break;
             default:
-                JOptionPane.showMessageDialog(this, "Login failed", "Message Box", JOptionPane.ERROR_MESSAGE, error_icon);
+                displayLoginError();
                 break;
         }
-
-    }//GEN-LAST:event_managerLoginButtonActionPerformed
-
-    private void programQuitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programQuitButtonActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_programQuitButtonActionPerformed
-
-    private void managerLogin(Manager m, String u, String p) {
-        if (m.loginAttempt(u, p)) {
-            JOptionPane.showMessageDialog(this, "Hello Manager " + m.getName(), "Message Box", JOptionPane.INFORMATION_MESSAGE, info_icon);
-            this.setVisible(false);
-            main_form.setVisible(true);
-        } // Login passed
-        else {
-            JOptionPane.showMessageDialog(this, "Login failed", "Message Box", JOptionPane.ERROR_MESSAGE, error_icon);
-        } // Login failed
     }
 
     /**

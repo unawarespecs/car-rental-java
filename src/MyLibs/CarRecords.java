@@ -5,14 +5,18 @@ import java.util.ArrayList;
 public class CarRecords extends Records {
 
     private ArrayList<Car> allCars;
+    
+    public CarRecords() {
+        this.allCars = new ArrayList<Car>();
+    }
 
     @Override
     public int totalRecords(int totalR) {
         throw new UnsupportedOperationException("Work in progress.");
     }
 
-    public int checkAvail(CarRecords this, Date d) {
-        for (Car freeCar : this.getAllCars()) {
+    public int checkAvail(CarRecords cr, Date d) {
+        for (Car freeCar : cr.getAllCars()) {
             if (freeCar.getEndRent().getYear() <= d.getYear()
                     && freeCar.getEndRent().getMonth() <= d.getMonth()
                     && freeCar.getEndRent().getDay() < d.getDay()) 

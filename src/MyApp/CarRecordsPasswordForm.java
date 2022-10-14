@@ -10,7 +10,8 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 public class CarRecordsPasswordForm extends javax.swing.JFrame {
-    CarRecordsForm main_form = new CarRecordsForm();
+
+    CarRecordsForm main_form;
     ImageIcon info_icon = new ImageIcon("src/img/info_small.png");
     ImageIcon error_icon = new ImageIcon("src/img/error_small.png");
 
@@ -25,7 +26,7 @@ public class CarRecordsPasswordForm extends javax.swing.JFrame {
             2,
             new LoginDetails("user2", "pass"),
             new Date(1, 1, 1970));
-    
+
     /**
      * Creates new form CarRecordsPasswordForm
      */
@@ -146,8 +147,7 @@ public class CarRecordsPasswordForm extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             try {
                 loginLogic();
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 displayLoginError();
             }
         }
@@ -155,7 +155,16 @@ public class CarRecordsPasswordForm extends javax.swing.JFrame {
 
     private void managerLogin(Manager m, String u, String p) {
         if (m.loginAttempt(u, p)) {
-            JOptionPane.showMessageDialog(this, "Hello Manager " + m.getName(), "Message Box", JOptionPane.INFORMATION_MESSAGE, info_icon);
+            JOptionPane.showMessageDialog(this,
+                    "Good day, Manager " + m.getName(),
+                    "Message Box",
+                    JOptionPane.INFORMATION_MESSAGE,
+                    info_icon);
+
+            main_form = new CarRecordsForm();
+            main_form.setLoggedInManager(m);
+            main_form.replaceUserLabel();
+
             this.setVisible(false);
             main_form.setVisible(true);
         } // Login passed
@@ -163,7 +172,7 @@ public class CarRecordsPasswordForm extends javax.swing.JFrame {
             displayLoginError();
         } // Login failed
     }
-    
+
     private void displayLoginError() {
         JOptionPane.showMessageDialog(this, "Login failed", "Message Box", JOptionPane.ERROR_MESSAGE, error_icon);
     }
@@ -204,17 +213,13 @@ public class CarRecordsPasswordForm extends javax.swing.JFrame {
                     break;
                 }
             }
-        }
-        catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(CarRecordsPasswordForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (InstantiationException ex) {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(CarRecordsPasswordForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(CarRecordsPasswordForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(CarRecordsPasswordForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>

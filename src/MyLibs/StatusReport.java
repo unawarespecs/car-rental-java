@@ -1,6 +1,6 @@
 package MyLibs;
 
-public class StatusReport extends Report implements Display {
+public class StatusReport implements Report {
 
     private boolean rentedStatus;
 
@@ -8,7 +8,8 @@ public class StatusReport extends Report implements Display {
         return (x == true) ? "Rented" : "Available";
     }
 
-    public void displayForm() {
+    @Override
+    public void displayForm(CarRecords cr) {
         throw new UnsupportedOperationException("Work in progress.");
     }
 }

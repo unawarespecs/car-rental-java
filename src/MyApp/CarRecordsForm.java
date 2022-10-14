@@ -1,9 +1,12 @@
 package MyApp;
 
+import MyLibs.Manager;
 import java.awt.Font;
 import javax.swing.UIManager;
 
 public class CarRecordsForm extends javax.swing.JFrame {
+
+    private Manager loggedInManager;
 
     /**
      * Creates new form CarRecordsForm
@@ -12,6 +15,18 @@ public class CarRecordsForm extends javax.swing.JFrame {
         UIManager.put("OptionPane.messageFont", new Font("Verdana", Font.PLAIN, 12));
         UIManager.put("OptionPane.buttonFont", new Font("Verdana", Font.PLAIN, 11));
         initComponents();
+    }
+
+    public void replaceUserLabel() {
+        loggedInLabel.setText(loggedInManager.getName());
+    }
+
+    public Manager getLoggedInManager() {
+        return loggedInManager;
+    }
+
+    public void setLoggedInManager(Manager loggedInManager) {
+        this.loggedInManager = loggedInManager;
     }
 
     /**
@@ -23,22 +38,41 @@ public class CarRecordsForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        loggedAsLabel = new javax.swing.JLabel();
+        loggedInLabel = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        loggedAsLabel.setText("Logged in as:");
+
+        loggedInLabel.setText("Placeholder");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(loggedAsLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(loggedInLabel)
+                .addContainerGap(265, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loggedAsLabel)
+                    .addComponent(loggedInLabel))
+                .addContainerGap(275, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel loggedAsLabel;
+    private javax.swing.JLabel loggedInLabel;
     // End of variables declaration//GEN-END:variables
 }

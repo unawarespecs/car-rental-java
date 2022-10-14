@@ -10,6 +10,12 @@ public class Car {
     private Date endRent;
     private String renterName;
 
+    /**
+     * @param carNum car number
+     * @param brand car brand
+     * @param model car model
+     * @param price car price
+     */
     public Car(int carNum, String brand, String model, double price) {
         this.rentedStatus = false;
         this.endRent = new Date(1, 1, 1970); // default date

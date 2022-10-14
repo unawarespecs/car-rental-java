@@ -1,5 +1,5 @@
 package MyLibs;
 
-public class Report {
-    private int carNum;
+public interface Report {
+    public void displayForm(CarRecords cr);
 }

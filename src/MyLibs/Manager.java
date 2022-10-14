@@ -34,11 +34,7 @@ public class Manager {
         throw new UnsupportedOperationException("Work in progress.");
     }
 
-    public void showStatusRep(CarRecords cars) {
-        throw new UnsupportedOperationException("Work in progress.");
-    }
-
-    public void showListRep(CarRecords cars) {
+    public void showReport(CarRecords cars) {
         throw new UnsupportedOperationException("Work in progress.");
     }
 

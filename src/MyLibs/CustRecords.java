@@ -2,7 +2,7 @@ package MyLibs;
 
 import java.util.ArrayList;
 
-public class CustRecords extends Records {
+public class CustRecords {
 
     private ArrayList<Customer> allCustomers;
 
@@ -10,7 +10,6 @@ public class CustRecords extends Records {
         this.allCustomers = new ArrayList<Customer>();
     }
 
-    @Override
     public int totalRecords(int totalR) {
         throw new UnsupportedOperationException("Work in progress.");
     }

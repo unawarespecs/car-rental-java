@@ -6,6 +6,11 @@ import javax.swing.UIManager;
 
 public class CarRecordsForm extends javax.swing.JFrame {
 
+    CarAddForm carForm;
+    CheckAvailForm checkForm;
+    ProcessRentalForm processForm;
+    ViewReportsForm reportsForm;
+    
     private Manager loggedInManager;
 
     /**
@@ -40,12 +45,60 @@ public class CarRecordsForm extends javax.swing.JFrame {
 
         loggedAsLabel = new javax.swing.JLabel();
         loggedInLabel = new javax.swing.JLabel();
+        recordCarButton = new javax.swing.JButton();
+        processRentalButton = new javax.swing.JButton();
+        statusReportButton = new javax.swing.JButton();
+        programQuitButton = new javax.swing.JButton();
+        checkAvailButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
+        loggedAsLabel.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         loggedAsLabel.setText("Logged in as:");
 
+        loggedInLabel.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         loggedInLabel.setText("Placeholder");
+
+        recordCarButton.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        recordCarButton.setText("Record a Car");
+        recordCarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                recordCarButtonActionPerformed(evt);
+            }
+        });
+
+        processRentalButton.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        processRentalButton.setText("Process Rentals");
+        processRentalButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                processRentalButtonActionPerformed(evt);
+            }
+        });
+
+        statusReportButton.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        statusReportButton.setText("View Reports");
+        statusReportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusReportButtonActionPerformed(evt);
+            }
+        });
+
+        programQuitButton.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        programQuitButton.setText("Quit");
+        programQuitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                programQuitButtonActionPerformed(evt);
+            }
+        });
+
+        checkAvailButton.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        checkAvailButton.setText("Check Car Availability");
+        checkAvailButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkAvailButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -53,10 +106,20 @@ public class CarRecordsForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(loggedAsLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loggedInLabel)
-                .addContainerGap(265, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(statusReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(recordCarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(checkAvailButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(processRentalButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(programQuitButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(loggedAsLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(loggedInLabel)
+                        .addGap(0, 255, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -65,14 +128,53 @@ public class CarRecordsForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loggedAsLabel)
                     .addComponent(loggedInLabel))
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(recordCarButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(checkAvailButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(processRentalButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(statusReportButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(programQuitButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void recordCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordCarButtonActionPerformed
+        carForm = new CarAddForm();
+        carForm.setVisible(true);
+    }//GEN-LAST:event_recordCarButtonActionPerformed
+
+    private void processRentalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processRentalButtonActionPerformed
+        processForm = new ProcessRentalForm();
+        processForm.setVisible(true);
+    }//GEN-LAST:event_processRentalButtonActionPerformed
+
+    private void statusReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusReportButtonActionPerformed
+        checkForm = new CheckAvailForm();
+        checkForm.setVisible(true);
+    }//GEN-LAST:event_statusReportButtonActionPerformed
+
+    private void checkAvailButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAvailButtonActionPerformed
+        reportsForm = new ViewReportsForm();
+        reportsForm.setVisible(true);
+    }//GEN-LAST:event_checkAvailButtonActionPerformed
+
+    private void programQuitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programQuitButtonActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_programQuitButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton checkAvailButton;
     private javax.swing.JLabel loggedAsLabel;
     private javax.swing.JLabel loggedInLabel;
+    private javax.swing.JButton processRentalButton;
+    private javax.swing.JButton programQuitButton;
+    private javax.swing.JButton recordCarButton;
+    private javax.swing.JButton statusReportButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,6 +1,6 @@
 package MyLibs;
 
-public class ReportFactory {
+public class ReportFactory extends Factory {
     public Report showReport(int choice) {
         switch (choice) {
             case 0:
@@ -13,4 +13,7 @@ public class ReportFactory {
                 return null;
         }
     }
+    
+    @Override
+    public void createReport(CarRecords cr, int a) { }
 }

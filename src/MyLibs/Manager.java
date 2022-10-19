@@ -25,9 +25,9 @@ public class Manager {
     }
 
     public void recordCar(CarRecords cars) {
-        //insert code here to show a jFrame form to input these values from the Manager (TODO)
-        //cars.addCar(new Car(getTextfield, getTextfield, getTextfield, getTextfield)); 
-        throw new UnsupportedOperationException("Work in progress."); // for now
+        // insert code here to show a jFrame form to input these values from the Manager
+        // deprecated? (done by CarAddForm)
+        throw new UnsupportedOperationException("This function is deprecated, please use the CarAddForm to add new cars.");
     }
 
     public void processRental(Date d, CarRecords cars, CustRecords custs) {

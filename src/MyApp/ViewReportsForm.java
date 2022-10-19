@@ -1,11 +1,25 @@
 package MyApp;
 
+import MyLibs.Report;
+import MyLibs.ReportFactory;
+import javax.swing.UIManager;
+
 public class ViewReportsForm extends javax.swing.JFrame {
+
+    Report generatedReport;
+    ReportFactory rf;
 
     /**
      * Creates new form ViewReportsForm
      */
     public ViewReportsForm() {
+        //<editor-fold defaultstate="collapsed" desc="Look and feel setting code (optional) ">
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ViewReportsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
         initComponents();
     }
 
@@ -18,21 +32,72 @@ public class ViewReportsForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        infoLabel = new javax.swing.JLabel();
+        statusRepButton = new javax.swing.JButton();
+        listRepButton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setSize(new java.awt.Dimension(400, 300));
+        setSize(new java.awt.Dimension(0, 0));
+
+        infoLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        infoLabel.setText("Please choose the type of report to generate.");
+
+        statusRepButton.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        statusRepButton.setText("Rental Status");
+        statusRepButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusRepButtonActionPerformed(evt);
+            }
+        });
+
+        listRepButton.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        listRepButton.setText("All Cars");
+        listRepButton.setToolTipText("");
+        listRepButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listRepButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(infoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(statusRepButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(listRepButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(infoLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(statusRepButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(listRepButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void statusRepButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusRepButtonActionPerformed
+        generatedReport = rf.showReport(1);
+        
+    }//GEN-LAST:event_statusRepButtonActionPerformed
+
+    private void listRepButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listRepButtonActionPerformed
+        generatedReport = rf.showReport(2);
+    }//GEN-LAST:event_listRepButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel infoLabel;
+    private javax.swing.JButton listRepButton;
+    private javax.swing.JButton statusRepButton;
     // End of variables declaration//GEN-END:variables
 }

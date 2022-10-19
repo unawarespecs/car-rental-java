@@ -1,11 +1,47 @@
 package MyApp;
 
+import MyLibs.Car;
+import MyLibs.Manager;
+import MyLibs.CarRecords;
+import java.awt.HeadlessException;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+
 public class CarAddForm extends javax.swing.JFrame {
+
+    private Manager man;
+    private CarRecords cr;
+    ImageIcon info_icon = new ImageIcon("src/img/info_small.png");
+    ImageIcon error_icon = new ImageIcon("src/img/error_small.png");
+
+    public Manager getManager() {
+        return man;
+    }
+
+    public void setManager(Manager m) {
+        this.man = m;
+    }
+
+    public CarRecords getRecords() {
+        return cr;
+    }
+
+    public void setRecords(CarRecords cr) {
+        this.cr = cr;
+    }
 
     /**
      * Creates new form CarAddForm
      */
     public CarAddForm() {
+        //<editor-fold defaultstate="collapsed" desc="Look and feel setting code (optional) ">
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(CarAddForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
         initComponents();
     }
 
@@ -18,23 +54,139 @@ public class CarAddForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        addCarLabel = new javax.swing.JLabel();
+        carNumLabel = new javax.swing.JLabel();
+        carBrandLabel = new javax.swing.JLabel();
+        carModelLabel = new javax.swing.JLabel();
+        carPriceLabel = new javax.swing.JLabel();
+        carNumField = new javax.swing.JTextField();
+        carBrandField = new javax.swing.JTextField();
+        carModelField = new javax.swing.JTextField();
+        carPriceField = new javax.swing.JTextField();
+        addCarButton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Add a Car");
         setSize(new java.awt.Dimension(400, 300));
+
+        addCarLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        addCarLabel.setText("Add a Car");
+
+        carNumLabel.setText("Car ID Number");
+
+        carBrandLabel.setText("Car Brand");
+
+        carModelLabel.setText("Car Model");
+
+        carPriceLabel.setText("Car Price");
+
+        addCarButton.setText("Add Car");
+        addCarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 159, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(addCarButton)
+                                .addGap(159, 159, 159))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(addCarLabel)
+                                .addGap(164, 164, 164))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(carPriceLabel)
+                            .addComponent(carModelLabel)
+                            .addComponent(carBrandLabel)
+                            .addComponent(carNumLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(carModelField)
+                            .addComponent(carNumField)
+                            .addComponent(carBrandField, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                            .addComponent(carPriceField))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(addCarLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(carNumLabel)
+                    .addComponent(carNumField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(carBrandLabel)
+                    .addComponent(carBrandField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(carModelLabel)
+                    .addComponent(carModelField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(carPriceLabel)
+                    .addComponent(carPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(addCarButton)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCarButtonActionPerformed
+        try {
+            Car temp_car = new Car(
+                    Integer.parseInt(carNumField.getText()),
+                    carBrandField.getText(),
+                    carModelField.getText(),
+                    Double.parseDouble(carPriceField.getText())
+            );
+            cr.addCar(temp_car);
+            JOptionPane.showMessageDialog(this,
+                    "Successfully added car to database.",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE,
+                    info_icon);
+        } catch (HeadlessException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, 
+                    "Error adding a car. \nReason: " + e.toString(), 
+                    "Error", 
+                    JOptionPane.ERROR_MESSAGE, 
+                    error_icon);
+        }
+
+        // Debug purposes only
+        for (Car a : cr.getAllCars()) {
+            System.out.println("id: " + a.getCarNum()
+                    + "\nbrand: " + a.getBrand()
+                    + "\nmodel: " + a.getModel()
+                    + "\nprice: " + a.getPrice());
+        }
+    }//GEN-LAST:event_addCarButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addCarButton;
+    private javax.swing.JLabel addCarLabel;
+    private javax.swing.JTextField carBrandField;
+    private javax.swing.JLabel carBrandLabel;
+    private javax.swing.JTextField carModelField;
+    private javax.swing.JLabel carModelLabel;
+    private javax.swing.JTextField carNumField;
+    private javax.swing.JLabel carNumLabel;
+    private javax.swing.JTextField carPriceField;
+    private javax.swing.JLabel carPriceLabel;
     // End of variables declaration//GEN-END:variables
 }

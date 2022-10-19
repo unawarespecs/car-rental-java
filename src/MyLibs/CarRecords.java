@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class CarRecords {
 
     private ArrayList<Car> allCars;
-    
+
     public CarRecords() {
         this.allCars = new ArrayList<Car>();
     }
@@ -18,8 +18,7 @@ public class CarRecords {
         for (Car freeCar : cr.getAllCars()) {
             if (freeCar.getEndRent().getYear() <= d.getYear()
                     && freeCar.getEndRent().getMonth() <= d.getMonth()
-                    && freeCar.getEndRent().getDay() < d.getDay()) 
-            {
+                    && freeCar.getEndRent().getDay() < d.getDay()) {
                 //tableModel.insertRow(tableModel.getRowCount(), new Object[]{
                 //freeCar.getCarNum(), 
                 //freeCar.getModel(), 
@@ -49,5 +48,9 @@ public class CarRecords {
 
     public void setAllCars(ArrayList<Car> allCars) {
         this.allCars = allCars;
+    }
+
+    public void returnCar(int c) {
+        throw new UnsupportedOperationException("Work in progress.");
     }
 }

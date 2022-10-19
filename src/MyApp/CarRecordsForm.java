@@ -1,6 +1,8 @@
 package MyApp;
 
 import MyLibs.Manager;
+import MyLibs.CarRecords;
+import MyLibs.CustRecords;
 import java.awt.Font;
 import javax.swing.UIManager;
 
@@ -10,15 +12,24 @@ public class CarRecordsForm extends javax.swing.JFrame {
     CheckAvailForm checkForm;
     ProcessRentalForm processForm;
     ViewReportsForm reportsForm;
-    
-    private Manager loggedInManager;
 
+    private Manager loggedInManager;
+    private CarRecords cr = new CarRecords();
+    private CustRecords custr = new CustRecords();
     /**
      * Creates new form CarRecordsForm
      */
     public CarRecordsForm() {
-        UIManager.put("OptionPane.messageFont", new Font("Verdana", Font.PLAIN, 12));
-        UIManager.put("OptionPane.buttonFont", new Font("Verdana", Font.PLAIN, 11));
+        //<editor-fold defaultstate="collapsed" desc="Look and feel setting code (optional) ">
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(CarRecordsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        UIManager.put("OptionPane.messageFont", new Font("Segoe UI", Font.PLAIN, 12));
+        UIManager.put("OptionPane.buttonFont", new Font("Segoe UI", Font.PLAIN, 11));
+        
         initComponents();
     }
 
@@ -52,15 +63,16 @@ public class CarRecordsForm extends javax.swing.JFrame {
         checkAvailButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Car Rental & Management System");
         setResizable(false);
 
-        loggedAsLabel.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        loggedAsLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         loggedAsLabel.setText("Logged in as:");
 
-        loggedInLabel.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        loggedInLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         loggedInLabel.setText("Placeholder");
 
-        recordCarButton.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        recordCarButton.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         recordCarButton.setText("Record a Car");
         recordCarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,7 +80,7 @@ public class CarRecordsForm extends javax.swing.JFrame {
             }
         });
 
-        processRentalButton.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        processRentalButton.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         processRentalButton.setText("Process Rentals");
         processRentalButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +88,7 @@ public class CarRecordsForm extends javax.swing.JFrame {
             }
         });
 
-        statusReportButton.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        statusReportButton.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         statusReportButton.setText("View Reports");
         statusReportButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,7 +96,7 @@ public class CarRecordsForm extends javax.swing.JFrame {
             }
         });
 
-        programQuitButton.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        programQuitButton.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         programQuitButton.setText("Quit");
         programQuitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,7 +104,7 @@ public class CarRecordsForm extends javax.swing.JFrame {
             }
         });
 
-        checkAvailButton.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        checkAvailButton.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         checkAvailButton.setText("Check Car Availability");
         checkAvailButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +158,10 @@ public class CarRecordsForm extends javax.swing.JFrame {
 
     private void recordCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordCarButtonActionPerformed
         carForm = new CarAddForm();
+        
+        carForm.setManager(loggedInManager);
+        carForm.setRecords(cr);
+        
         carForm.setVisible(true);
     }//GEN-LAST:event_recordCarButtonActionPerformed
 
@@ -155,13 +171,13 @@ public class CarRecordsForm extends javax.swing.JFrame {
     }//GEN-LAST:event_processRentalButtonActionPerformed
 
     private void statusReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusReportButtonActionPerformed
-        checkForm = new CheckAvailForm();
-        checkForm.setVisible(true);
+        reportsForm = new ViewReportsForm();
+        reportsForm.setVisible(true);
     }//GEN-LAST:event_statusReportButtonActionPerformed
 
     private void checkAvailButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAvailButtonActionPerformed
-        reportsForm = new ViewReportsForm();
-        reportsForm.setVisible(true);
+        checkForm = new CheckAvailForm();
+        checkForm.setVisible(true);
     }//GEN-LAST:event_checkAvailButtonActionPerformed
 
     private void programQuitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programQuitButtonActionPerformed

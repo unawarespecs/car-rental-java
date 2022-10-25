@@ -1,5 +1,9 @@
 package MyLibs;
 
+import MyApp.CheckAvailForm;
+import javax.swing.table.DefaultTableModel;
+import MyApp.CarRecordsForm;
+
 public class Manager {
 
     private String name;
@@ -24,14 +28,41 @@ public class Manager {
         return (login.getUsername().equals(user) && login.getPassword().equals(pass));
     }
 
-    public void recordCar(CarRecords cars) {
-        // insert code here to show a jFrame form to input these values from the Manager
-        // deprecated? (done by CarAddForm)
-        throw new UnsupportedOperationException("This function is deprecated, please use the CarAddForm to add new cars.");
-    }
-
     public void processRental(Date d, CarRecords cars, CustRecords custs) {
-        throw new UnsupportedOperationException("Work in progress.");
+        CheckAvailForm availForm = new CheckAvailForm();
+        //int chosenCar = cars.checkAvail(cars, d);
+
+        CheckAvailForm.tempDate = d;
+        CheckAvailForm.tempCarRec = cars;
+        CheckAvailForm.tempCustRec = custs;
+        DefaultTableModel model = (DefaultTableModel) availForm.getAvailFormTable().getModel();
+        model.setRowCount(0);
+
+        for (Car c : cars.allCars) {
+            int carNum;
+            String carBrand;
+            String carModel;
+            double carPrice;
+
+            if (c.getEndRent().getYear() <= d.getYear()
+                    && c.getEndRent().getMonth() <= d.getMonth()
+                    && c.getEndRent().getDay() < d.getDay()) {
+
+                carNum = c.getCarNum();
+                carBrand = c.getBrand();
+                carModel = c.getModel();
+                carPrice = c.getPrice();
+
+                model = (DefaultTableModel) availForm.getAvailFormTable().getModel();
+                model.insertRow(model.getRowCount(),
+                        new Object[]{carNum, carBrand, carModel, carPrice}
+                );
+            }
+
+        }
+        availForm.setVisible(true);
+        
+        
     }
 
     public void showReport(CarRecords cars) {

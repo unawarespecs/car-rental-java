@@ -18,13 +18,17 @@ public class CarRecordsPasswordForm extends javax.swing.JFrame {
     /**
      * define all hard coded managers here
      */
-    Manager test = new Manager("asdf",
+    Manager test = new Manager("Gab",
             1,
             new LoginDetails("user", "pass"),
             new Date(1, 1, 1970));
-    Manager test2 = new Manager("asdf 2",
+    Manager test2 = new Manager("Chris",
             2,
             new LoginDetails("user2", "pass"),
+            new Date(1, 1, 1970));
+    Manager test3 = new Manager("Zild",
+            3,
+            new LoginDetails("user 3", "pass"),
             new Date(1, 1, 1970));
 
     /**
@@ -52,28 +56,27 @@ public class CarRecordsPasswordForm extends javax.swing.JFrame {
         programQuitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Login");
         setResizable(false);
 
-        loginHeader.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        loginHeader.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         loginHeader.setText("Login to Car Rentals Management System");
 
-        managerUsername.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        managerUsername.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
 
-        managerPassword.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        managerPassword.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         managerPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 managerPasswordKeyPressed(evt);
             }
         });
 
-        managerUsernameLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        managerUsernameLabel.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         managerUsernameLabel.setText("Username");
 
-        managerPasswordLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        managerPasswordLabel.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         managerPasswordLabel.setText("Password");
 
-        managerLoginButton.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        managerLoginButton.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         managerLoginButton.setText("Login");
         managerLoginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,7 +84,7 @@ public class CarRecordsPasswordForm extends javax.swing.JFrame {
             }
         });
 
-        programQuitButton.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        programQuitButton.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         programQuitButton.setText("Exit");
         programQuitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,16 +105,16 @@ public class CarRecordsPasswordForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(managerLoginButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(programQuitButton)
                         .addGap(74, 74, 74))
                     .addComponent(managerPassword)
                     .addComponent(managerUsername))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addComponent(loginHeader)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,10 +178,10 @@ public class CarRecordsPasswordForm extends javax.swing.JFrame {
     }
 
     private void displayLoginError() {
-        JOptionPane.showMessageDialog(this, 
-                "Error logging in.\nMake sure you have entered a correct username/password combo.", 
-                "Error", 
-                JOptionPane.ERROR_MESSAGE, 
+        JOptionPane.showMessageDialog(this,
+                "Error logging in.\nMake sure you have entered a correct username/password combo.",
+                "Error",
+                JOptionPane.ERROR_MESSAGE,
                 error_icon);
     }
 
@@ -194,6 +197,9 @@ public class CarRecordsPasswordForm extends javax.swing.JFrame {
             case "user2":
                 managerLogin(test2, enteredUser, passAsString);
                 break;
+            case "user 3":
+                managerLogin(test3, enteredUser, passAsString);
+                break;
             default:
                 displayLoginError();
                 break;
@@ -204,8 +210,8 @@ public class CarRecordsPasswordForm extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        UIManager.put("OptionPane.messageFont", new Font("Segoe UI", Font.PLAIN, 12));
-        UIManager.put("OptionPane.buttonFont", new Font("Segoe UI", Font.PLAIN, 11));
+        UIManager.put("OptionPane.messageFont", new Font("Verdana", Font.PLAIN, 12));
+        UIManager.put("OptionPane.buttonFont", new Font("Verdana", Font.PLAIN, 11));
         //<editor-fold defaultstate="collapsed" desc="Look and feel setting code (optional) ">
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

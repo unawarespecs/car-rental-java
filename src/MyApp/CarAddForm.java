@@ -4,7 +4,7 @@ import MyLibs.Car;
 import MyLibs.Manager;
 import MyLibs.CarRecords;
 import java.awt.HeadlessException;
-import javax.swing.ImageIcon;
+import MyLibs.Date;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -12,8 +12,7 @@ public class CarAddForm extends javax.swing.JFrame {
 
     private Manager man;
     private CarRecords cr;
-    ImageIcon info_icon = new ImageIcon("src/img/info_small.png");
-    ImageIcon error_icon = new ImageIcon("src/img/error_small.png");
+
 
     public Manager getManager() {
         return man;
@@ -67,9 +66,10 @@ public class CarAddForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add a Car");
+        setResizable(false);
         setSize(new java.awt.Dimension(400, 300));
 
-        addCarLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        addCarLabel.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         addCarLabel.setText("Add a Car");
 
         carNumLabel.setText("Car ID Number");
@@ -95,7 +95,7 @@ public class CarAddForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 159, Short.MAX_VALUE)
+                        .addGap(0, 149, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(addCarButton)
@@ -138,7 +138,7 @@ public class CarAddForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(carPriceLabel)
                     .addComponent(carPriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(addCarButton)
                 .addContainerGap())
         );
@@ -154,27 +154,28 @@ public class CarAddForm extends javax.swing.JFrame {
                     carModelField.getText(),
                     Double.parseDouble(carPriceField.getText())
             );
-            cr.addCar(temp_car);
+            temp_car.setEndRent(new Date(0,0,0));
+            CarRecordsForm.cars.addCar(temp_car);
             JOptionPane.showMessageDialog(this,
                     "Successfully added car to database.",
                     "Success",
                     JOptionPane.INFORMATION_MESSAGE,
-                    info_icon);
+                    CarRecordsForm.info_icon);
         } catch (HeadlessException | NumberFormatException e) {
             JOptionPane.showMessageDialog(this, 
                     "Error adding a car. \nReason: " + e.toString(), 
                     "Error", 
                     JOptionPane.ERROR_MESSAGE, 
-                    error_icon);
+                    CarRecordsForm.error_icon);
         }
 
         // Debug purposes only
-        for (Car a : cr.getAllCars()) {
-            System.out.println("id: " + a.getCarNum()
-                    + "\nbrand: " + a.getBrand()
-                    + "\nmodel: " + a.getModel()
-                    + "\nprice: " + a.getPrice());
-        }
+//        for (Car a : cr.getAllCars()) {
+//            System.out.println("id: " + a.getCarNum()
+//                    + "\nbrand: " + a.getBrand()
+//                    + "\nmodel: " + a.getModel()
+//                    + "\nprice: " + a.getPrice());
+//        }
     }//GEN-LAST:event_addCarButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

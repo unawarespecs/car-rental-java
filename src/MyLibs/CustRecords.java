@@ -4,11 +4,7 @@ import java.util.ArrayList;
 
 public class CustRecords {
 
-    private ArrayList<Customer> allCustomers;
-
-    public CustRecords() {
-        this.allCustomers = new ArrayList<Customer>();
-    }
+    public ArrayList<Customer> allCustomers = new ArrayList<Customer>();
 
     public int totalRecords(int totalR) {
         throw new UnsupportedOperationException("Work in progress.");

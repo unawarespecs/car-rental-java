@@ -1,25 +1,15 @@
 package MyApp;
 
-import MyLibs.Report;
-import MyLibs.ReportFactory;
-import javax.swing.UIManager;
+import MyLibs.*;
 
-public class ViewReportsForm extends javax.swing.JFrame {
+public class ReportChooseForm extends javax.swing.JFrame {
 
-    Report generatedReport;
-    ReportFactory rf;
+    ReportFactory rf = new ReportFactory();
 
     /**
      * Creates new form ViewReportsForm
      */
-    public ViewReportsForm() {
-        //<editor-fold defaultstate="collapsed" desc="Look and feel setting code (optional) ">
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewReportsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    public ReportChooseForm() {
         initComponents();
     }
 
@@ -37,6 +27,7 @@ public class ViewReportsForm extends javax.swing.JFrame {
         listRepButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
 
         infoLabel.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -87,12 +78,11 @@ public class ViewReportsForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void statusRepButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusRepButtonActionPerformed
-        generatedReport = rf.showReport(1);
-        
+       rf.createReport(CarRecordsForm.cars, 1);
     }//GEN-LAST:event_statusRepButtonActionPerformed
 
     private void listRepButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listRepButtonActionPerformed
-        generatedReport = rf.showReport(2);
+       rf.createReport(CarRecordsForm.cars, 2);
     }//GEN-LAST:event_listRepButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

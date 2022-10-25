@@ -4,15 +4,7 @@ import java.util.ArrayList;
 
 public class CarRecords {
 
-    private ArrayList<Car> allCars;
-
-    public CarRecords() {
-        this.allCars = new ArrayList<Car>();
-    }
-
-    public int totalRecords(int totalR) {
-        throw new UnsupportedOperationException("Work in progress.");
-    }
+    public ArrayList<Car> allCars = new ArrayList<Car>();
 
     public int checkAvail(CarRecords cr, Date d) {
         for (Car freeCar : cr.getAllCars()) {
